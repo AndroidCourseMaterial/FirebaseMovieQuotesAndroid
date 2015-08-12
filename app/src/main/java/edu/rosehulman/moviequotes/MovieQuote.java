@@ -9,10 +9,16 @@ public class MovieQuote {
 
     private String mMovie;
     private String mQuote;
+    private String mKey;
 
-    public MovieQuote(String movie, String quote) {
+    public MovieQuote(String key, String movie, String quote) {
+        mKey = key;
         mMovie = movie;
         mQuote = quote;
+    }
+
+    public String getKey() {
+        return mKey;
     }
 
     public String getMovie() {

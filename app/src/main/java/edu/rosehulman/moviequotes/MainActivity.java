@@ -179,7 +179,7 @@ public class MainActivity extends ListActivity {
                     public void onClick(View v) {
                         String movieTitleText = movieTitleEditText.getText().toString();
                         String movieQuoteText = movieQuoteEditText.getText().toString();
-                        MovieQuote currentQuote = new MovieQuote(movieTitleText, movieQuoteText);
+                        MovieQuote currentQuote = new MovieQuote("unused", movieTitleText, movieQuoteText);
                         mAdapter.addItem(currentQuote);
 
                         dismiss();
