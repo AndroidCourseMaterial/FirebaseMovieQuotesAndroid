@@ -11,8 +11,8 @@ public class MovieQuote {
     private String mQuote;
 
     public MovieQuote(String movie, String quote) {
-        this.mMovie = movie;
-        this.mQuote = quote;
+        mMovie = movie;
+        mQuote = quote;
     }
 
     public String getMovie() {
@@ -20,7 +20,7 @@ public class MovieQuote {
     }
 
     public void setMovie(String movie) {
-        this.mMovie = movie;
+        mMovie = movie;
     }
 
     public String getQuote() {
@@ -28,6 +28,6 @@ public class MovieQuote {
     }
 
     public void setQuote(String quote) {
-        this.mQuote = quote;
+        mQuote = quote;
     }
 }
