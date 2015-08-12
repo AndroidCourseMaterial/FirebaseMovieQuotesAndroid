@@ -7,27 +7,27 @@ package edu.rosehulman.moviequotes;
  */
 public class MovieQuote {
 
-    private String movie;
-    private String quote;
+    private String mMovie;
+    private String mQuote;
 
     public MovieQuote(String movie, String quote) {
-        this.movie = movie;
-        this.quote = quote;
+        this.mMovie = movie;
+        this.mQuote = quote;
     }
 
     public String getMovie() {
-        return movie;
+        return mMovie;
     }
 
     public void setMovie(String movie) {
-        this.movie = movie;
+        this.mMovie = movie;
     }
 
     public String getQuote() {
-        return quote;
+        return mQuote;
     }
 
     public void setQuote(String quote) {
-        this.quote = quote;
+        this.mQuote = quote;
     }
 }
