@@ -1,10 +1,14 @@
 package edu.rosehulman.moviequotes;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -94,10 +98,12 @@ public class MainActivity extends ListActivity {
 
         DialogFragment df = new DialogFragment() {
             @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-                View view = inflater.inflate(R.layout.dialog_edit, container);
-                getDialog().setTitle(getString(R.string.edit_dialog_title));
-                final Button cancelButton = (Button) view.findViewById(R.id.add_dialog_cancel);
+            public Dialog onCreateDialog(Bundle savedInstanceState) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(getString(R.string.edit_dialog_title));
+
+                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_edit, null);
+                builder.setView(view);
                 final EditText movieTitleEditText = (EditText) view.findViewById(R.id.add_dialog_movie_title);
                 final EditText movieQuoteEditText = (EditText) view.findViewById(R.id.add_dialog_movie_quote);
 
@@ -127,13 +133,13 @@ public class MainActivity extends ListActivity {
                 movieQuoteEditText.addTextChangedListener(textWatcher);
                 movieTitleEditText.addTextChangedListener(textWatcher);
 
-                cancelButton.setOnClickListener(new OnClickListener() {
+                builder.setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(DialogInterface dialog, int which) {
                         dismiss();
                     }
                 });
-                return view;
+                return builder.create();
             }
         };
         df.show(getFragmentManager(), "");
@@ -178,8 +184,9 @@ public class MainActivity extends ListActivity {
                         Toast.makeText(MainActivity.this,
                                 "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
                                 .show();
-                        MovieQuote currentQuote = new MovieQuote(null, movieTitleText, movieQuoteText);
+                        MovieQuote currentQuote = new MovieQuote(movieTitleText, movieQuoteText);
                         mAdapter.addItem(currentQuote);
+
                         dismiss();
                     }
                 });

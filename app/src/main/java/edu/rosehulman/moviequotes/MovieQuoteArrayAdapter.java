@@ -1,10 +1,5 @@
 package edu.rosehulman.moviequotes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class MovieQuoteArrayAdapter extends BaseAdapter {
 
@@ -35,15 +27,23 @@ public class MovieQuoteArrayAdapter extends BaseAdapter {
     }
 
     public void removeItem(MovieQuote movieQuote) {
-        //TODO: Remove data from Firebase
+        //TODO: Remove the next line(s) and use Firebase instead
+        mMovieQuotes.remove(movieQuote);
     }
 
     public void addItem(MovieQuote movieQuote) {
-        //TODO: Push new data to Firebase
+        //TODO: Remove the next line(s) and use Firebase instead
+        mMovieQuotes.add(movieQuote);
+        notifyDataSetChanged();
+
+
     }
 
     public void updateItem(MovieQuote movieQuote, String newMovie, String newQuote) {
-        //TODO: Push changes to Firebase
+        //TODO: Remove the next line(s) and use Firebase instead
+        movieQuote.setMovie(newMovie);
+        movieQuote.setQuote(newQuote);
+        notifyDataSetChanged();
     }
 
     @Override
