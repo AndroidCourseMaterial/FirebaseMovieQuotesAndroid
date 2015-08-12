@@ -11,11 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieQuoteArrayAdapter extends BaseAdapter {
-
-
     private final LayoutInflater mInflater;
     private List<MovieQuote> mMovieQuotes;
-
     public MovieQuoteArrayAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         mMovieQuotes = new ArrayList<MovieQuote>();
