@@ -19,7 +19,6 @@ import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -180,9 +179,6 @@ public class MainActivity extends ListActivity {
                     public void onClick(View v) {
                         String movieTitleText = movieTitleEditText.getText().toString();
                         String movieQuoteText = movieQuoteEditText.getText().toString();
-                        Toast.makeText(MainActivity.this,
-                                "Got the title " + movieTitleText + " and quote " + movieQuoteText, Toast.LENGTH_LONG)
-                                .show();
                         MovieQuote currentQuote = new MovieQuote(movieTitleText, movieQuoteText);
                         mAdapter.addItem(currentQuote);
 
