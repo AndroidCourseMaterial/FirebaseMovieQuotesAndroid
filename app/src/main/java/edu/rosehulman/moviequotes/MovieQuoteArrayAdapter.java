@@ -7,15 +7,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieQuoteArrayAdapter extends BaseAdapter {
+public class MovieQuoteArrayAdapter extends BaseAdapter implements ChildEventListener {
     private final LayoutInflater mInflater;
     private List<MovieQuote> mMovieQuotes;
+    private Firebase mFirebaseQuotesReference;
     public MovieQuoteArrayAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         mMovieQuotes = new ArrayList<MovieQuote>();
+        Firebase.setAndroidContext(context);
+        mFirebaseQuotesReference = new Firebase("https://boutell-movie-quotes.firebaseio.com/quotes");
+        mFirebaseQuotesReference.addChildEventListener(this);
     }
 
     @Override
@@ -69,4 +78,28 @@ public class MovieQuoteArrayAdapter extends BaseAdapter {
         return view;
     }
 
+    @Override
+    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override
+    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override
+    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+    }
+
+    @Override
+    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+    }
+
+    @Override
+    public void onCancelled(FirebaseError firebaseError) {
+
+    }
 }
