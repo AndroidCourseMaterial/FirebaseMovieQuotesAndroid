@@ -1,6 +1,7 @@
 package edu.rosehulman.moviequotes;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,9 @@ public class MovieQuoteArrayAdapter extends BaseAdapter implements ChildEventLis
         mInflater = LayoutInflater.from(context);
         mMovieQuotes = new ArrayList<MovieQuote>();
         Firebase.setAndroidContext(context);
-        mFirebaseQuotesReference = new Firebase("https://boutell-movie-quotes.firebaseio.com/quotes");
+        mFirebaseQuotesReference = new Firebase("https://boutell-movie-quotes.firebaseio.com/quotes/");
         mFirebaseQuotesReference.addChildEventListener(this);
+        Log.d("FMQ", "Adding listener");
     }
 
     @Override
@@ -81,25 +83,31 @@ public class MovieQuoteArrayAdapter extends BaseAdapter implements ChildEventLis
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
+        Log.d("FMQ", "child added" + dataSnapshot );
+        String key = dataSnapshot.getKey();
+        String movie = dataSnapshot.child("movie").getValue(String.class);
+        String quote = dataSnapshot.child("quote").getValue(String.class);
+        mMovieQuotes.add(0, new MovieQuote(key, movie, quote));
+        notifyDataSetChanged();
     }
 
     @Override
     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+        Log.d("FMQ", "child changed" + dataSnapshot );
     }
 
     @Override
     public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+        Log.d("FMQ", "child removed" + dataSnapshot );
     }
 
     @Override
     public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+        Log.d("FMQ", "child moved" + dataSnapshot );
     }
 
     @Override
     public void onCancelled(FirebaseError firebaseError) {
-
+        Log.d("FMQ", "cancelled");
     }
 }
