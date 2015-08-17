@@ -23,17 +23,10 @@ public class MovieQuoteArrayAdapter extends BaseAdapter {
         return mMovieQuotes.size();
     }
 
-    public void removeItem(MovieQuote movieQuote) {
-        //TODO: Remove the next line(s) and use Firebase instead
-        mMovieQuotes.remove(movieQuote);
-    }
-
     public void addItem(MovieQuote movieQuote) {
         //TODO: Remove the next line(s) and use Firebase instead
         mMovieQuotes.add(movieQuote);
         notifyDataSetChanged();
-
-
     }
 
     public void updateItem(MovieQuote movieQuote, String newMovie, String newQuote) {
@@ -41,6 +34,11 @@ public class MovieQuoteArrayAdapter extends BaseAdapter {
         movieQuote.setMovie(newMovie);
         movieQuote.setQuote(newQuote);
         notifyDataSetChanged();
+    }
+
+    public void removeItem(MovieQuote movieQuote) {
+        //TODO: Remove the next line(s) and use Firebase instead
+        mMovieQuotes.remove(movieQuote);
     }
 
     @Override
