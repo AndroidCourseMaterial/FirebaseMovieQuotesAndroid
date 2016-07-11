@@ -1,33 +1,30 @@
 package edu.rosehulman.moviequotes;
 
 /**
- * The model for a moviequote
- * <p/>
- * Created by rockwotj on 4/22/2015.
+ * Created by Matt Boutell on 12/15/2015, based on earlier work by Dave Fisher.
  */
 public class MovieQuote {
+    private String quote;
+    private String movie;
 
-    private String mMovie;
-    private String mQuote;
-
-    public MovieQuote(String movie, String quote) {
-        mMovie = movie;
-        mQuote = quote;
-    }
-
-    public String getMovie() {
-        return mMovie;
-    }
-
-    public void setMovie(String movie) {
-        mMovie = movie;
+    public MovieQuote(String quote, String movie) {
+        this.movie = movie;
+        this.quote = quote;
     }
 
     public String getQuote() {
-        return mQuote;
+        return quote;
     }
 
     public void setQuote(String quote) {
-        mQuote = quote;
+        this.quote = quote;
+    }
+
+    public String getMovie() {
+        return movie;
+    }
+
+    public void setMovie(String movie) {
+        this.movie = movie;
     }
 }
