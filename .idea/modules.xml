@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FirebaseMovieQuotesAndroid.iml" filepath="$PROJECT_DIR$/FirebaseMovieQuotesAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MovieQuotes.iml" filepath="$PROJECT_DIR$/MovieQuotes.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
