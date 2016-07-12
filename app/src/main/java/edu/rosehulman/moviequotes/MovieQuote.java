@@ -1,5 +1,7 @@
 package edu.rosehulman.moviequotes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by Matt Boutell on 12/15/2015, based on earlier work by Dave Fisher.
  */
@@ -7,7 +9,7 @@ public class MovieQuote {
     private String quote;
     private String movie;
 
-
+    @JsonIgnore
     private String key;
 
     public MovieQuote(String quote, String movie) {
