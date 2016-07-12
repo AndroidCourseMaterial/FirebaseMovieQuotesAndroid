@@ -7,9 +7,23 @@ public class MovieQuote {
     private String quote;
     private String movie;
 
+
+    private String key;
+
     public MovieQuote(String quote, String movie) {
         this.movie = movie;
         this.quote = quote;
+    }
+
+    public MovieQuote() {
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getQuote() {
