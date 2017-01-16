@@ -68,59 +68,53 @@ public class MainActivity extends AppCompatActivity implements MovieQuoteAdapter
     }
 
     private void showAddEditDialog(final MovieQuote movieQuote) {
-        DialogFragment df = new DialogFragment() {
-            @Override
-            public Dialog onCreateDialog(Bundle savedInstanceState) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle(getString(movieQuote == null ? R.string.dialog_add_title : R.string.dialog_edit_title));
-                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_add, null, false);
-                builder.setView(view);
-                final EditText quoteEditText = (EditText) view.findViewById(R.id.dialog_add_quote_text);
-                final EditText movieEditText = (EditText) view.findViewById(R.id.dialog_add_movie_text);
-                if (movieQuote != null) {
-                    // pre-populate
-                    quoteEditText.setText(movieQuote.getQuote());
-                    movieEditText.setText(movieQuote.getMovie());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(movieQuote == null ? R.string.dialog_add_title : R.string.dialog_edit_title));
+        View view = getLayoutInflater().inflate(R.layout.dialog_add, null, false);
+        builder.setView(view);
+        final EditText quoteEditText = (EditText) view.findViewById(R.id.dialog_add_quote_text);
+        final EditText movieEditText = (EditText) view.findViewById(R.id.dialog_add_movie_text);
+        if (movieQuote != null) {
+            // pre-populate
+            quoteEditText.setText(movieQuote.getQuote());
+            movieEditText.setText(movieQuote.getMovie());
 
-                    TextWatcher textWatcher = new TextWatcher() {
-                        @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                            // empty
-                        }
-
-                        @Override
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            // empty
-                        }
-
-                        @Override
-                        public void afterTextChanged(Editable s) {
-                            String quote = quoteEditText.getText().toString();
-                            String movie = movieEditText.getText().toString();
-                            mAdapter.update(movieQuote, quote, movie);
-                        }
-                    };
-
-                    quoteEditText.addTextChangedListener(textWatcher);
-                    movieEditText.addTextChangedListener(textWatcher);
+            TextWatcher textWatcher = new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    // empty
                 }
 
-                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (movieQuote == null) {
-                            String quote = quoteEditText.getText().toString();
-                            String movie = movieEditText.getText().toString();
-                            mAdapter.add(new MovieQuote(quote, movie));
-                        }
-                    }
-                });
-                builder.setNegativeButton(android.R.string.cancel, null);
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    // empty
+                }
 
-                return builder.create();
+                @Override
+                public void afterTextChanged(Editable s) {
+                    String quote = quoteEditText.getText().toString();
+                    String movie = movieEditText.getText().toString();
+                    mAdapter.update(movieQuote, quote, movie);
+                }
+            };
+
+            quoteEditText.addTextChangedListener(textWatcher);
+            movieEditText.addTextChangedListener(textWatcher);
+        }
+
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (movieQuote == null) {
+                    String quote = quoteEditText.getText().toString();
+                    String movie = movieEditText.getText().toString();
+                    mAdapter.add(new MovieQuote(quote, movie));
+                }
             }
-        };
-        df.show(getSupportFragmentManager(), "add");
+        });
+        builder.setNegativeButton(android.R.string.cancel, null);
+
+        builder.create().show();
     }
 
 
